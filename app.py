@@ -80,7 +80,6 @@ def logout():
 
 @app.route("/about")
 def about():
-    id = current_user.id
     return render_template("about.html")
 @app.route("/courses")
 #@login_required
