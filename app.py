@@ -79,7 +79,6 @@ def logout():
     return redirect(url_for('home'))
 
 @app.route("/about")
-#@login_required
 def about():
     id = current_user.id
     return render_template("about.html")
