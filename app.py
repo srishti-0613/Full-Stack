@@ -38,7 +38,7 @@ class Users(db.Model):
 def load_user(id): 
     return Users.query.get(int(id))
 
-@app.route("/home")
+@app.route("/")
 def home():
     return render_template("home.html")
 
