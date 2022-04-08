@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request,flash,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, logout_user, login_required,current_user,LoginManager,is_authenticated
+from flask_login import login_user, logout_user, login_required,current_user,LoginManager
 app = Flask(__name__)
 
 login_manager = LoginManager()
@@ -40,7 +40,7 @@ def load_user(user_id):
 
 @app.route("/")
 def home():
-    return render_template("home.html",is_authenticated=is_authenticated)
+    return render_template("home.html")
 
 @app.route("/register",methods = ['GET','POST'])
 def register():
@@ -57,7 +57,7 @@ def register():
         entry = Users(name=name, email=email, phone=phone,password=password)
         db.session.add(entry)
         db.session.commit()
-    return render_template("index.html",is_authenticated=is_authenticated)
+    return render_template("index.html")
 
 @app.route("/login",methods = ['GET','POST'])
 def login():
@@ -73,7 +73,7 @@ def login():
             login_user(user)
             flash("Loggedin succesfully")
             return redirect(url_for('home'))
-    return render_template('index.html',is_authenticated=is_authenticated)
+    return render_template('index.html')
 
 @app.route("/logout",methods = ['GET','POST'])
 @login_required
@@ -83,11 +83,11 @@ def logout():
 
 @app.route("/about")
 def about():
-    return render_template("about.html",is_authenticated=is_authenticated)
+    return render_template("about.html")
 @app.route("/courses")
 @login_required
 def courses():
-    return render_template("courses.html",name=current_user.name,is_authenticated=is_authenticated)
+    return render_template("courses.html",name=current_user.name)
 @app.route("/contact",methods = ['GET','POST'])
 def contact():
     if(request.method ==  'POST'):
@@ -102,15 +102,15 @@ def contact():
         entry = Contact(name=name, email=email, subject=subject,message=message)
         db.session.add(entry)
         db.session.commit()
-    return render_template("contact.html",is_authenticated=is_authenticated)
+    return render_template("contact.html")
 @app.route("/leaderboard")
 @login_required
 def events():
-    return render_template("leaderboard.html",name=current_user.name,is_authenticated=is_authenticated)
+    return render_template("leaderboard.html",name=current_user.name)
 @app.route("/notice")
 @login_required
 def notice():
-    return render_template("notice.html",name=current_user.name,is_authenticated=is_authenticated)
+    return render_template("notice.html",name=current_user.name)
 if __name__ == "__main__":
     from waitress import serve
     serve(app, host="0.0.0.0", port=8080)
