@@ -54,9 +54,12 @@ def register():
         if user:
             flash('phone/Email address already exists')
             return redirect(url_for('home'))
-        entry = Users(name=name, email=email, phone=phone,password=password)
-        db.session.add(entry)
-        db.session.commit()
+        else:
+            entry = Users(name=name, email=email, phone=phone,password=password)
+            db.session.add(entry)
+            db.session.commit()
+            flash('Registered successfully!')
+            return redirect(url_for('home'))
     return render_template("index.html")
 
 @app.route("/login",methods = ['GET','POST'])
