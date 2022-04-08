@@ -9,7 +9,8 @@ login_manager.login_message = u"Please login to access this page"
 login_manager.login_message_category = "info"
 login_manager.login_view = 'login'
 
-local_server =False
+active = 'active'
+local_server =True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 if(local_server):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1/brilliant_zone'
@@ -39,7 +40,7 @@ def load_user(user_id):
 
 @app.route("/",methods = ['GET','POST'])
 def home():
-    return render_template("home.html")
+    return render_template("home.html",active=active)
 
 @app.route("/register",methods = ['GET','POST'])
 def register():
@@ -85,11 +86,13 @@ def logout():
 
 @app.route("/about",methods = ['GET','POST'])
 def about():
-    return render_template("about.html")
+    return render_template("about.html",active=active)
+
 @app.route("/courses",methods = ['GET','POST'])
 #@login_required
 def courses():
-    return render_template("courses.html")
+    return render_template("courses.html",active=active)
+
 @app.route("/contact",methods = ['GET','POST'])
 def contact():
     if(request.method ==  'POST'):
@@ -104,16 +107,18 @@ def contact():
         entry = Contact(name=name, email=email, subject=subject,message=message)
         db.session.add(entry)
         db.session.commit()
-    return render_template("contact.html")
+    return render_template("contact.html",active=active)
+
 @app.route("/leaderboard",methods = ['GET','POST'])
 # @login_required
 def events():
-    return render_template("leaderboard.html")
+    return render_template("leaderboard.html",active=active)
+
 @app.route("/notice",methods = ['GET','POST'])
 # @login_required
 def notice():
-    return render_template("notice.html")
-if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
-# app.run(debug=True)
+    return render_template("notice.html",active=active)
+# if __name__ == "__main__":
+#     from waitress import serve
+#     serve(app, host="0.0.0.0", port=8080)
+app.run(debug=True)

@@ -86,6 +86,7 @@
     </div>
   </div>
   <!-- navbar -->
+
   <div class="navigation w-100">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark p-0">
@@ -94,29 +95,9 @@
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        {% block header %}{% endblock %}
         
-        <div class="collapse navbar-collapse" id="navigation">
-          <ul class="navbar-nav ml-auto text-center">
-            <li class="nav-item @@home">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item @@about">
-              <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item @@courses">
-              <a class="nav-link" href="/courses">Invest</a>
-            </li>
-            <li class="nav-item @@events">
-              <a class="nav-link" href="/notice">Find Investors</a>
-            </li>
-            <!-- <li class="nav-item @@blog">
-              <a class="nav-link" href="/leaderboard">I</a>
-            </li> -->
-            <li class="nav-item @@contact">
-              <a class="nav-link" href="/contact">CONTACT</a>
-            </li>
-          </ul>
-        </div>
+        
       </nav>
     </div>
   </div>
