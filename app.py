@@ -35,8 +35,8 @@ class Users(db.Model):
     password = db.Column(db.String(20), nullable=False)
 
 @login_manager.user_loader  
-def load_user(id): 
-    return Users.query.get(int(id))
+def load_user(user_id): 
+    return Users.query.get(int(user_id))
 
 @app.route("/")
 def home():
@@ -50,7 +50,10 @@ def register():
         email = request.form.get('signupEmail')
         phone = request.form.get('signupPhone')
         password = request.form.get('signupPassword')
-
+        user = Users.query.filter_by(phone=phone).first()
+        if user:
+            flash('phone/Email address already exists')
+            return redirect(url_for('home'))
         entry = Users(name=name, email=email, phone=phone,password=password)
         db.session.add(entry)
         db.session.commit()
@@ -73,7 +76,7 @@ def login():
     return render_template('index.html')
 
 @app.route("/logout",methods = ['GET','POST'])
-#@login_required
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
@@ -82,9 +85,9 @@ def logout():
 def about():
     return render_template("about.html")
 @app.route("/courses")
-#@login_required
+@login_required
 def courses():
-    return render_template("courses.html")
+    return render_template("courses.html",name=current_user.name)
 @app.route("/contact",methods = ['GET','POST'])
 def contact():
     if(request.method ==  'POST'):
@@ -101,13 +104,14 @@ def contact():
         db.session.commit()
     return render_template("contact.html")
 @app.route("/leaderboard")
-#@login_required
+@login_required
 def events():
-    return render_template("leaderboard.html")
+    return render_template("leaderboard.html",name=current_user.name)
 @app.route("/notice")
-#@login_required
+@login_required
 def notice():
-    return render_template("notice.html")
+    return render_template("notice.html",name=current_user.name)
 if __name__ == "__main__":
     from waitress import serve
     serve(app, host="0.0.0.0", port=8080)
+# app.run(debug=True)

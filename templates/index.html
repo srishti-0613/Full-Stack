@@ -55,8 +55,29 @@
         </div>
         <div class="col-lg-8 text-center text-lg-right">
           <ul class="list-inline">
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="/login" data-toggle="modal" data-target="#loginModal">login</a></li>
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#signupModal">register</a></li>
+            {% if current_user.is_authenticated %}
+            <li class="list-inline-item"><h3 class="title">
+              Welcome, {{ name }}!
+            </h3></li>
+            {% endif %}
+            <li class="list-inline-item">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissable" style="color: red;" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">x</span>
+            </button>
+        {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </li>
+      {% if not current_user.is_authenticated %}
+            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="/login" data-toggle="modal" data-target="#loginModal">Enterpreneur login</a></li>
+            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="/register" data-toggle="modal" data-target="#signupModal">Enterpreneur register</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -71,7 +92,7 @@
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
+        
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav ml-auto text-center">
             <li class="nav-item @@home">
@@ -121,10 +142,10 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
-<form method="POST" action="/login">
+<form method="POST" action="/">
             <div class="modal-body">
                 <div class="login">
-                    <form action="/home" method="POST" class="row">
+                    <form action="/" method="POST" class="row">
                         <div class="col-12">
                             <input type="text" class="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone">
                         </div>
@@ -169,7 +190,7 @@
 {% endif %}
 {% endwith %}
           <div class="modal-body">
-              <form action="#" class="row">
+              <form action="/" method="POST" class="row">
                   <div class="col-12">
                       <input type="text" class="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Phone">
                   </div>
