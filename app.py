@@ -38,7 +38,7 @@ class Users(db.Model):
 def load_user(user_id): 
     return Users.query.get(int(user_id))
 
-@app.route("/")
+@app.route("/",methods = ['GET','POST'])
 def home():
     return render_template("home.html")
 
@@ -84,10 +84,10 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route("/about")
+@app.route("/about",methods = ['GET','POST'])
 def about():
     return render_template("about.html")
-@app.route("/courses")
+@app.route("/courses",methods = ['GET','POST'])
 @login_required
 def courses():
     return render_template("courses.html",name=current_user.name)
@@ -106,11 +106,11 @@ def contact():
         db.session.add(entry)
         db.session.commit()
     return render_template("contact.html")
-@app.route("/leaderboard")
+@app.route("/leaderboard",methods = ['GET','POST'])
 @login_required
 def events():
     return render_template("leaderboard.html",name=current_user.name)
-@app.route("/notice")
+@app.route("/notice",methods = ['GET','POST'])
 @login_required
 def notice():
     return render_template("notice.html",name=current_user.name)
