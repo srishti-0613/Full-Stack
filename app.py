@@ -44,7 +44,7 @@ def home():
 
 @app.route("/register",methods = ['GET','POST'])
 def register():
-    if(request.method ==  'POST'):
+    if request.method == ['GET','POST']:
         
         name = request.form.get('signupName')
         email = request.form.get('signupEmail')
