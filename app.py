@@ -87,7 +87,7 @@ def logout():
 def about():
     return render_template("about.html")
 @app.route("/courses",methods = ['GET','POST'])
-@login_required
+#@login_required
 def courses():
     return render_template("courses.html")
 @app.route("/contact",methods = ['GET','POST'])
