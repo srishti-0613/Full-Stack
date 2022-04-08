@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request,flash,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, logout_user, login_required,current_user,LoginManager
+from flask_login import login_user, logout_user, login_required,current_user,LoginManager,UserMixin
 app = Flask(__name__)
 
 login_manager = LoginManager()
@@ -9,7 +9,7 @@ login_manager.login_message = u"Please login to access this page"
 login_manager.login_message_category = "info"
 login_manager.login_view = 'login'
 
-local_server =False
+local_server =True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 if(local_server):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1/brilliant_zone'
@@ -17,7 +17,6 @@ if(local_server):
 #     app.config['SQLALCHEMY_DATABASE_URI'] = parameter['prod_uri
 app.config['SECRET_KEY'] = 'mysecretkey'
 db = SQLAlchemy(app)
-
 class Contact(db.Model):
 
     sno = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -26,7 +25,7 @@ class Contact(db.Model):
     subject = db.Column(db.String(50), nullable=False)
     message = db.Column(db.String(300), nullable=False)
 
-class Users(db.Model):
+class Users(db.Model,UserMixin):
     
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
@@ -79,7 +78,7 @@ def login():
     return render_template('index.html')
 
 @app.route("/logout",methods = ['GET','POST'])
-@login_required
+# @login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
@@ -90,7 +89,7 @@ def about():
 @app.route("/courses",methods = ['GET','POST'])
 @login_required
 def courses():
-    return render_template("courses.html",name=current_user.name)
+    return render_template("courses.html")
 @app.route("/contact",methods = ['GET','POST'])
 def contact():
     if(request.method ==  'POST'):
@@ -107,14 +106,14 @@ def contact():
         db.session.commit()
     return render_template("contact.html")
 @app.route("/leaderboard",methods = ['GET','POST'])
-@login_required
+# @login_required
 def events():
-    return render_template("leaderboard.html",name=current_user.name)
+    return render_template("leaderboard.html")
 @app.route("/notice",methods = ['GET','POST'])
-@login_required
+# @login_required
 def notice():
-    return render_template("notice.html",name=current_user.name)
-if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
-# app.run(debug=True)
+    return render_template("notice.html")
+# if __name__ == "__main__":
+#     from waitress import serve
+#     serve(app, host="0.0.0.0", port=8080)
+app.run(debug=True)
