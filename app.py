@@ -109,15 +109,30 @@ def contact():
         db.session.commit()
     return render_template("contact.html",active=active)
 
-@app.route("/leaderboard",methods = ['GET','POST'])
+@app.route("/refer",methods = ['GET','POST'])
 # @login_required
-def events():
-    return render_template("leaderboard.html",active=active)
+def refer():
+    return render_template("refer.html",active=active)
 
 @app.route("/notice",methods = ['GET','POST'])
 # @login_required
 def notice():
     return render_template("notice.html",active=active)
+
+@app.route("/jnvenglish",methods = ['GET','POST'])
+# @login_required
+def jnvenglish():
+    return render_template("jnvenglish.html",active=active)
+
+@app.route("/programmingjobready",methods = ['GET','POST'])
+# @login_required
+def programmingjobready():
+    return render_template("programmingjobready.html",active=active)
+
+@app.route("/jnvhindi",methods = ['GET','POST'])
+# @login_required
+def jnvhindi():
+    return render_template("jnvhindi.html",active=active)
 if __name__ == "__main__":
     from waitress import serve
     serve(app, host="0.0.0.0", port=8080)
