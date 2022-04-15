@@ -10,7 +10,7 @@ login_manager.login_message_category = "info"
 login_manager.login_view = 'login'
 
 active = 'active'
-local_server =True
+local_server =False
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 if(local_server):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1/brilliant_zone'
@@ -133,7 +133,7 @@ def programmingjobready():
 # @login_required
 def jnvhindi():
     return render_template("jnvhindi.html",active=active)
-# if __name__ == "__main__":
-#     from waitress import serve
-#     serve(app, host="0.0.0.0", port=8080)
-app.run(debug=True)
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
+# app.run(debug=True)
