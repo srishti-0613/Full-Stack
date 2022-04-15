@@ -372,6 +372,9 @@ a h4:hover {
 .bg-gray {
   background: #f8f8f8;
 }
+.bg-green {
+  background: #6db879;
+}
 
 .text-primary {
   color: #ffbc3b !important;
