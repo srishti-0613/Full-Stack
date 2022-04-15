@@ -31,8 +31,17 @@
         <a class="dropdown-item" href="/jnvhindi">JNV hindi</a>
       </div>
     </li>
-    <li class="nav-item ">
-      <a class="nav-link" href="/programmingjobready">Programming</a>
+    <li class="nav-item dropdown view">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Programming
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/webdev">Full stack web development</a>
+        <a class="dropdown-item" href="/cpythoncpp">C, C++, Python</a>
+        <a class="dropdown-item" href="/programmingjobready">Programming Job ready</a>
+        <a class="dropdown-item" href="/dsa">C, C++, DSA</a>
+      </div>
     </li>
   </ul>
 </div>
@@ -118,16 +127,16 @@
       <img class="card-img-top rounded-0" src="{{ url_for('static',filename='images/courses/course-1.jpg') }}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>coming soon</li>
-          <li class="list-inline-item"><a class="text-color" href="#">Programming
+          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>25-04-2022</li>
+          <li class="list-inline-item"><a class="text-color" href="/webdev">Programming
           </a></li>
         </ul>
-        <a href="course-single.html">
+        <a href="/webdev">
           <h4 class="card-title">Full Stack Web Development
           </h4>
         </a>
-        <p class="card-text mb-4">This will be full stack development course in whichyou will learn html,css,javascript,flask,nodejs,expressjs,git,reactjs and many more.</p>
-        <a href="course-single.html" class="btn btn-primary btn-sm">Not started yet</a>
+        <p class="card-text mb-4">This will be full stack development course in which you will learn html,css,javascript,flask,nodejs,expressjs,git,reactjs and many more technologies with 2-3 projects.</p>
+        <a href="/webdev" class="btn btn-primary btn-sm">See more</a>
       </div>
     </div>
   </div>
@@ -137,14 +146,14 @@
       <img class="card-img-top rounded-0" src="{{ url_for('static',filename='images/courses/course-2.jpg') }}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>Coming soon</li>
-          <li class="list-inline-item"><a class="text-color" href="#">12th class pcm</a></li>
+          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>25-04-2022</li>
+          <li class="list-inline-item"><a class="text-color" href="/cpythoncpp">C, C++, Python</a></li>
         </ul>
-        <a href="course-single.html">
-          <h4 class="card-title">12th class physics and maths</h4>
+        <a href="/cpythoncpp">
+          <h4 class="card-title">C, C++, Python Combo Pack</h4>
         </a>
-        <p class="card-text mb-4"> It will cover complete syllabus of physics and maths from basic to advanced for 12th CBSE board students</p>
-        <a href="course-single.html" class="btn btn-primary btn-sm">Not started yet</a>
+        <p class="card-text mb-4"> It is a complete combo pack course of C,C++,Python. This course is to make You master in these programming languages.</p>
+        <a href="/cpythoncpp" class="btn btn-primary btn-sm">See more</a>
       </div>
     </div>
   </div>
@@ -154,14 +163,14 @@
       <img class="card-img-top rounded-0" src="{{ url_for('static',filename='images/courses/course-3.jpg') }}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>Coming soon</li>
-          <li class="list-inline-item"><a class="text-color" href="#">10th pcm</a></li>
+          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>25-04-2022</li>
+          <li class="list-inline-item"><a class="text-color" href="/dsa">C, C++, DSA</a></li>
         </ul>
-        <a href="course-single.html">
-          <h4 class="card-title">10th class physics and maths</h4>
+        <a href="/dsa">
+          <h4 class="card-title">C, C++, DSA Combo Pack</h4>
         </a>
-        <p class="card-text mb-4"> It will cover complete syllabus of physics and maths from basic to advanced for 10th CBSE board students</p>
-        <a href="course-single.html" class="btn btn-primary btn-sm">Not started yet</a>
+        <p class="card-text mb-4"> It is a complete combo pack course of C,C++,DSA. This course is to make You master in these technologies and make you job ready.</p>
+        <a href="/dsa" class="btn btn-primary btn-sm">See more</a>
       </div>
     </div>
   </div>

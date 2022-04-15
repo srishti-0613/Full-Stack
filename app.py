@@ -133,6 +133,22 @@ def programmingjobready():
 # @login_required
 def jnvhindi():
     return render_template("jnvhindi.html",active=active)
+
+@app.route("/dsa",methods = ['GET','POST'])
+# @login_required
+def dsa():
+    return render_template("dsa.html",active=active)
+
+@app.route("/cpythoncpp",methods = ['GET','POST'])
+# @login_required
+def cpythoncpp():
+    return render_template("cpythoncpp.html",active=active)
+
+@app.route("/webdev",methods = ['GET','POST'])
+# @login_required
+def webdev():
+    return render_template("webdev.html",active=active)
+
 if __name__ == "__main__":
     from waitress import serve
     serve(app, host="0.0.0.0", port=8080)
