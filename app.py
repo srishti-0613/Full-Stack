@@ -34,6 +34,14 @@ class Users(db.Model,UserMixin):
     phone = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
 
+class Admin(db.Model,UserMixin):
+    
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(200), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(20), nullable=False)
+
 class Courses(db.Model,UserMixin):
     
     sno = db.Column(db.Integer, primary_key=True, nullable=False)
