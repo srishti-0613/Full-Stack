@@ -45,6 +45,11 @@
     </li>
   </ul>
 </div>
+<script type="text/javascript">
+  function showMessage() {
+      alert("Please login as admin to add the course");
+  }
+</script>
 {% endblock %}
 <!-- page title -->
 <section class="page-title-section overlay" data-background="{{ url_for('static',filename='images/backgrounds/page-title.jpg') }}">
@@ -233,6 +238,8 @@
   </div>
   
 </div>
+<input type="button" id="btnShowMsg" value="Add New Course" onClick="showMessage()" />
+
 <!-- /course list -->
   </div>
 </section>
