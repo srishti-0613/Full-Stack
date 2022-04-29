@@ -34,6 +34,15 @@ class Users(db.Model,UserMixin):
     phone = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
 
+class Courses(db.Model,UserMixin):
+    
+    sno = db.Column(db.Integer, primary_key=True, nullable=False)
+    title = db.Column(db.String(80), nullable=False)
+    subheading = db.Column(db.String(50), nullable=False)
+    form = db.Column(db.String(50), nullable=False)
+    startdate = db.Column(db.String(50), nullable=False)
+    content = db.Column(db.String(300), nullable=False)
+
 @login_manager.user_loader  
 def load_user(user_id): 
     return Users.query.get(int(user_id))
@@ -91,7 +100,8 @@ def about():
 @app.route("/courses",methods = ['GET','POST'])
 #@login_required
 def courses():
-    return render_template("courses.html",active=active)
+    courses = Courses.query.filter_by().all()[0:50]
+    return render_template("courses.html",active=active,courses=courses)
 
 @app.route("/contact",methods = ['GET','POST'])
 def contact():
@@ -148,6 +158,30 @@ def cpythoncpp():
 # @login_required
 def webdev():
     return render_template("webdev.html",active=active)
+
+@app.route("/add", methods=['GET','POST'] )
+# @login_required
+def addcourse():
+    if(request.method ==  'POST'):
+      title = request.form.get('title')
+      subheading = request.form.get('subheading')
+      form = request.form.get('form')
+      content = request.form.get('content')
+      startdate = request.form.get('startdate') 
+      entry = Courses(title=title,subheading=subheading,form=form,content=content,startdate=startdate)
+      db.session.add(entry)
+      db.session.commit()
+      return redirect(url_for('/home'))  
+    return render_template('addcourse.html')
+
+@app.route("/delete/<sno>" , methods=['GET', 'POST'])
+@login_required
+def delete(sno):
+    if current_user.email==Admin.query.get('email'):
+        course = Courses.query.filter_by(sno=sno).first()
+        db.session.delete(course)
+        db.session.commit()
+    return redirect(url_for('/home'))
 
 if __name__ == "__main__":
     from waitress import serve
