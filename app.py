@@ -108,8 +108,8 @@ def about():
 @app.route("/courses",methods = ['GET','POST'])
 #@login_required
 def courses():
-    courses = Courses.query.filter_by().all()[0:50]
-    return render_template("courses.html",active=active,courses=courses)
+    # courses = Courses.query.filter_by().all()[0:50]
+    return render_template("courses.html",active=active)
 
 @app.route("/contact",methods = ['GET','POST'])
 def contact():
